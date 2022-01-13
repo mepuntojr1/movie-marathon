@@ -38,7 +38,7 @@ class Room extends Component {
         const roomName = this.props.name.toUpperCase();
         const roomConfig = config.rooms[roomName];
 
-        const defaultTitle = "Stop Looking for Doctors — Find Them.";
+        const defaultTitle = "Movie Marathon with You";
         const defaultBackground = "logo.png";
 
         const title = roomConfig && roomConfig.TITLE ? roomConfig.TITLE : defaultTitle;
