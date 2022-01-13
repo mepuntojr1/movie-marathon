@@ -5,7 +5,7 @@ import config from "./config.js";
 class Room extends Component {
     componentDidMount() {
         function createFrameAndJoinRoom(room) {
-            let roomName = "meet-" + room;
+            let roomName = config.PREFIX + "-" + room;
             window.callFrame = window.DailyIframe.createFrame(
                 document.getElementById("frame"), {
                 showLeaveButton: true,
@@ -20,7 +20,7 @@ class Room extends Component {
                 }
             });
             
-            console.log("Joining " + roomName);
+            console.log("Joining " + room);
             console.log("https://" + config.DAILY_SUBDOMAIN + ".daily.co/" + roomName);
             window.callFrame.join({ url: "https://" + config.DAILY_SUBDOMAIN + ".daily.co/" + roomName })
         }
@@ -38,7 +38,7 @@ class Room extends Component {
         const roomName = this.props.name.toUpperCase();
         const roomConfig = config.rooms[roomName];
 
-        const defaultTitle = "MEETING WITH "+ roomName + " // GUEST";
+        const defaultTitle = "Stop Looking for Doctors — Find Them.";
         const defaultBackground = "logo.png";
 
         const title = roomConfig && roomConfig.TITLE ? roomConfig.TITLE : defaultTitle;
@@ -59,16 +59,12 @@ class Room extends Component {
                 <div id="frame" style={frameStyle}></div>
                 <div className="header" style={headerStyle}>
                     <h2 className="title">{title}</h2>
-                    <a href={config.COMPANY_URL} target="_blank" rel="noopener noreferrer"><img alt={config.COMPANY_NAME} className="logo-header" src={config.ASSET_PATH + "/logo-header.png"}></img></a>
+                    <a href={config.COMPANY_URL} target="_blank" rel="noopener noreferrer"><img alt={config.COMPANY_NAME} className="logo-header" src={config.ASSET_PATH + "/logo-header.png"} width="40" height="40"></img></a>
                 </div>
                 <div className="footer">
                     <div className="date" id="date"></div>
-                    <div className="plug">
-                        <span className="made"><a href="https://lee.af/meet-app" target="_blank" rel="noopener noreferrer">Made</a></span>
-                        <span className="daily">with <a href="https://daily.co" target="_blank" rel="noopener noreferrer">daily.co</a></span>
-                        <a href="https://github.com/rootvc/meet" target="_blank" rel="noopener noreferrer"><img alt="GitHub" className="github" src="github.png"></img></a>
-                    </div>
-                </div>
+          
+               </div>
             </div>
         );
     };
